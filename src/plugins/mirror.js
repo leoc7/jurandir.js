@@ -14,7 +14,6 @@ export default class MirrorPlugin extends Plugin {
         });
 
         this.on('message', message => this.processMessage(message));
-        this.enabled = true;
     }
 
     isImage(name) {
@@ -32,7 +31,7 @@ export default class MirrorPlugin extends Plugin {
                             .crop(0, 0, xMid, image.getHeight())
                             .flip(true, false);
                         image.blit(left, xMid, 0);
-                        image.fisheye({r: 2})
+                        //image.fisheye({r: 2})
                     }
 
                     if (side == 'right') {
@@ -42,7 +41,7 @@ export default class MirrorPlugin extends Plugin {
                             .crop(xMid - 1, 0, xMid, image.getHeight())
                             .flip(true, false);
                         image.blit(right, 0, 0);
-                        image.fisheye({r: 2})
+                        //image.fisheye({r: 2})
                     }
 
                     image.write(name, () => {

@@ -4,6 +4,7 @@ import PluginManager from './plugins/manager';
 import { Client as DiscordClient } from 'discord.js';
 import MirrorPlugin from './plugins/mirror';
 import TTSPlugin, { VOICES as TTSVoices } from './plugins/tts';
+import MutePlugin from './plugins/mute';
 
 export default class Client {
     plugins = new PluginManager();
@@ -15,6 +16,7 @@ export default class Client {
 
         this.plugins.add(new MirrorPlugin());
         this.plugins.add(new TTSPlugin());
+        this.plugins.add(new MutePlugin());
     }
 
     connect() {
