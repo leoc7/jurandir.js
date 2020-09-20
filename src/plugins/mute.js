@@ -16,32 +16,20 @@ export default class MutePlugin extends Plugin {
         const channel = message.member.voice.channel;
         if (!channel) return;
 
-        if (message.content.startsWith('!muteall')) {
-            this.muteAll(channel);
+        if (message.content.startsWith('-ma')) {
+            this.setMuteAll(channel, true);
         }
 
-        if (message.content.startsWith('!unmuteall')) {
-            this.unmuteAll(channel);
-        }
-    }
-
-    muteAll(channel) {
-        const members = channel.members.array();
-
-        for(let member in members) {
-            const voice = members[member].voice;
-
-            voice.setMute(true);
+        if (message.content.startsWith('-ua')) {
+            this.setMuteAll(channel, false);
         }
     }
 
-    unmuteAll(channel) {
+    setMuteAll(channel, action) {
         const members = channel.members.array();
 
-        for(let member in members) {
-            const voice = members[member].voice;
-
-            voice.setMute(false);
-        }
+        members.forEach(member => {
+            member.voice.setMute(action);
+        });
     }
 }
